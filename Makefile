@@ -616,7 +616,13 @@ else
       endif
     else
       ifneq ($(TARGETSYSTEM),WINDOWS)
-        LDFLAGS += -lncurses
+        ifeq ($(shell if $(PKG_CONFIG) --exists --silence-errors ncursesw; then echo Y; fi),Y)
+          CXXFLAGS += $(shell $(PKG_CONFIG) --cflags ncursesw)
+          LDFLAGS += $(shell $(PKG_CONFIG) --libs ncursesw)
+        else
+          $(warning Failed to detect ncursesw, falling back to -lncurses)
+          LDFLAGS += -lncurses
+        endif
       endif
 
       ifdef OSXCROSS
