@@ -5388,6 +5388,7 @@ int game::mon_info( const catacurses::window &w )
         turnssincelastmon++;
         if (turnssincelastmon >= get_option<int>( "AUTOSAFEMODETURNS" ) && safe_mode == SAFE_MODE_OFF) {
             set_safe_mode( SAFE_MODE_ON );
+            g->u.move_mode = "walk";
         }
     }
 
