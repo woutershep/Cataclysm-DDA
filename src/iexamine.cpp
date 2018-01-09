@@ -1707,7 +1707,7 @@ void iexamine::dirtmound(player &p, const tripoint &examp)
     std::vector<seed_tuple> seed_entries;
     for( const auto &pr : seed_map ) {
         seed_entries.emplace_back(
-            pr.first, item::nname( pr.first, pr.second ), pr.second );
+            pr.first, item::nname( pr.first, 1 ), pr.second );
     }
 
     // Sort by name
